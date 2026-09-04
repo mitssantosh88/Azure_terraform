@@ -1,0 +1,8 @@
+#Terraform
+.Terraform
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*tfvars.json
