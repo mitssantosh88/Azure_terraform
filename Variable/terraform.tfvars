@@ -1,0 +1,5 @@
+resource_group_name ="rg-prod"
+resource_group_name_2 = "rg-dev"
+resource_group_name_3 = "rg-qa"
+location = "East US"
+storage_account_name = "st5gprod"
