@@ -4,11 +4,12 @@ variable "azurerm_resource_groups" {
     location = string
   }))
 }
-# variable "resource_groups_locations" {
-#   type = string
-# }
-
-# variable "storage_accounts" {
-#   type = set(string)
-
-# }
+variable "storage_accounts" {
+  type = map(object({
+    name               = string
+    resource_group_key = string
+    location           = string
+    account_tier       = string
+    replication_type   = string
+  }))
+}
