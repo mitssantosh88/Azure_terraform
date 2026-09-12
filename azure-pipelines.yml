@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: 'Telecom_pool'
+  name: 'Telecom pool'
 
 stages:
 
@@ -21,10 +21,16 @@ stages:
 
     - script: |
         cd Variable
+
         echo "Current Directory:"
         cd
+
+        echo "Terraform Version:"
+        terraform version
+
         echo "Running Terraform Init..."
-        terraform init
+        terraform init -upgrade
+
       displayName: 'Terraform Init'
 
 
@@ -46,10 +52,16 @@ stages:
 
     - script: |
         cd Variable
+
         echo "Current Directory:"
         cd
+
+        echo "Running Terraform Init again..."
+        terraform init -upgrade
+
         echo "Running Terraform Plan..."
         terraform plan
+
       displayName: 'Terraform Plan'
 
 
@@ -71,8 +83,15 @@ stages:
 
     - script: |
         cd Variable
+
         echo "Current Directory:"
         cd
+
+        echo "Running Terraform Init again..."
+        terraform init -upgrade
+
         echo "Running Terraform Apply..."
         terraform apply -auto-approve
+
       displayName: 'Terraform Apply'
+

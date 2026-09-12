@@ -1,0 +1,34 @@
+{
+  "name": "vsts-cmdline-task",
+  "version": "1.0.0",
+  "description": "Azure Pipelines Command Line Task",
+  "main": "cmdline.js",
+  "scripts": {
+    "build": "node ../../make.js build --task CmdLineV2",
+    "serverBuild": "node ../../make.js serverBuild --task CmdLineV2",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Microsoft/azure-pipelines-tasks.git"
+  },
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Microsoft/azure-pipelines-tasks/issues"
+  },
+  "homepage": "https://github.com/Microsoft/azure-pipelines-tasks#readme",
+  "dependencies": {
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^24.10.0",
+    "@types/uuid": "^8.3.0",
+    "azure-pipelines-task-lib": "^5.279.0",
+    "uuid": "^8.3.0"
+  },
+  "overrides": {
+    "picomatch": "2.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
