@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: 'Telecom pool'
+  name: 'Telecom_pool'
 
 stages:
 
@@ -94,4 +94,3 @@ stages:
         terraform apply -auto-approve
 
       displayName: 'Terraform Apply'
-
