@@ -1,0 +1,78 @@
+trigger:
+- main
+
+pool:
+  name: 'Telecom_pool'
+
+stages:
+
+# ==========================================
+# 1. TERRAFORM INIT
+# ==========================================
+
+- stage: Terraform_Init
+  displayName: '1 - Terraform Init'
+
+  jobs:
+  - job: Init
+
+    steps:
+    - checkout: self
+
+    - script: |
+        cd Variable
+        echo "Current Directory:"
+        cd
+        echo "Running Terraform Init..."
+        terraform init
+      displayName: 'Terraform Init'
+
+
+# ==========================================
+# 2. TERRAFORM PLAN
+# ==========================================
+
+- stage: Terraform_Plan
+  displayName: '2 - Terraform Plan'
+
+  dependsOn: Terraform_Init
+  condition: succeeded()
+
+  jobs:
+  - job: Plan
+
+    steps:
+    - checkout: self
+
+    - script: |
+        cd Variable
+        echo "Current Directory:"
+        cd
+        echo "Running Terraform Plan..."
+        terraform plan
+      displayName: 'Terraform Plan'
+
+
+# ==========================================
+# 3. TERRAFORM APPLY
+# ==========================================
+
+- stage: Terraform_Apply
+  displayName: '3 - Terraform Apply'
+
+  dependsOn: Terraform_Plan
+  condition: succeeded()
+
+  jobs:
+  - job: Apply
+
+    steps:
+    - checkout: self
+
+    - script: |
+        cd Variable
+        echo "Current Directory:"
+        cd
+        echo "Running Terraform Apply..."
+        terraform apply -auto-approve
+      displayName: 'Terraform Apply'
