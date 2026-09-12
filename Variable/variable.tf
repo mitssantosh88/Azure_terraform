@@ -10,7 +10,7 @@ variable "resource_group_name_3" {
 variable "location" {
   type = string
 }
-variable "storage_account_name" {
-  type = string
+# variable "storage_account_name" {
+#   type = string
   
-}
+# }
