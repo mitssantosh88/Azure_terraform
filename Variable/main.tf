@@ -1,15 +1,15 @@
-resource "azurerm_resource_group" "RG1" {
-  name     = var.resource_group_name
-  location = var.location
-}
-resource "azurerm_resource_group" "RG2" {
-  name     = var.resource_group_name_2
-  location = var.location
-}
-resource "azurerm_resource_group" "RG3" {
-  name     = var.resource_group_name_3
-  location = var.location
-}
+# resource "azurerm_resource_group" "RG1" {
+#   name     = var.resource_group_name
+#   location = var.location
+# }
+# resource "azurerm_resource_group" "RG2" {
+#   name     = var.resource_group_name_2
+#   location = var.location
+# }
+# resource "azurerm_resource_group" "RG3" {
+#   name     = var.resource_group_name_3
+#   location = var.location
+# }
 # resource "azurerm_virtual_network" "VNET1"{
 #     name = "vnet-5g-prod"
 #     location = azurerm_resource_group.RG1.location
