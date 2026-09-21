@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 # Resource Group Child Module
 module "resource_group" {
-  source = "./Module/resource_group"
+  source = "./Module/resource-group"
 
   resource_group_name = var.resource_group_name
   location            = var.location
