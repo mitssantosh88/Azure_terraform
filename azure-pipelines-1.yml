@@ -1,0 +1,39 @@
+trigger:
+- main
+
+pool:
+  name: Telecom_pool
+
+steps:
+
+- script: |
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
+
+    echo ===== CURRENT DIRECTORY =====
+    cd
+
+    echo ===== CHECK MODULE =====
+    dir ..\..\Module
+    dir ..\..\Module\network
+    dir ..\..\Module\resource_group
+  displayName: "Debug Terraform Paths"
+
+- script: |
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
+    terraform init -reconfigure
+  displayName: "Terraform Init"
+
+- script: |
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
+    terraform validate
+  displayName: "Terraform Validate"
+
+- script: |
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
+    terraform plan
+  displayName: "Terraform Plan"
+
+- script: |
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
+    terraform apply -auto-approve
+  displayName: "Terraform Apply"
