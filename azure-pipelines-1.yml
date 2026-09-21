@@ -4,36 +4,147 @@ trigger:
 pool:
   name: Telecom_pool
 
-steps:
+stages:
 
-- script: |
-    cd /d "$(Build.SourcesDirectory)\environments\preprod"
+# =========================
+# DEV
+# =========================
+- stage: DEV
+  displayName: "DEV"
 
-    echo ===== CURRENT DIRECTORY =====
-    cd
+  jobs:
+  - job: Terraform_DEV
 
-    echo ===== CHECK MODULE =====
-    dir ..\..\Module
-    dir ..\..\Module\network
-    dir ..\..\Module\resource_group
-  displayName: "Debug Terraform Paths"
+    steps:
 
-- script: |
-    cd /d "$(Build.SourcesDirectory)\environments\preprod"
-    terraform init -reconfigure
-  displayName: "Terraform Init"
+    - script: |
+        cd environments/dev
+        terraform init
+      displayName: "Terraform Init - DEV"
 
-- script: |
-    cd /d "$(Build.SourcesDirectory)\environments\preprod"
-    terraform validate
-  displayName: "Terraform Validate"
+    - script: |
+        cd environments/dev
+        terraform validate
+      displayName: "Terraform Validate - DEV"
 
-- script: |
-    cd /d "$(Build.SourcesDirectory)\environments\preprod"
-    terraform plan
-  displayName: "Terraform Plan"
+    - script: |
+        cd environments/dev
+        terraform plan -out=tfplan
+      displayName: "Terraform Plan - DEV"
 
-- script: |
-    cd /d "$(Build.SourcesDirectory)\environments\preprod"
-    terraform apply -auto-approve
-  displayName: "Terraform Apply"
+    - script: |
+        cd environments/dev
+        terraform apply -auto-approve tfplan
+      displayName: "Terraform Apply - DEV"
+
+
+# =========================
+# QA
+# =========================
+- stage: QA
+  displayName: "QA"
+
+  dependsOn: DEV
+  condition: succeeded()
+
+  jobs:
+  - job: Terraform_QA
+
+    steps:
+
+    - script: |
+        cd environments/QA
+        terraform init
+      displayName: "Terraform Init - QA"
+
+    - script: |
+        cd environments/QA
+        terraform validate
+      displayName: "Terraform Validate - QA"
+
+    - script: |
+        cd environments/QA
+        terraform plan -out=tfplan
+      displayName: "Terraform Plan - QA"
+
+    - script: |
+        cd environments/QA
+        terraform apply -auto-approve tfplan
+      displayName: "Terraform Apply - QA"
+
+
+# =========================
+# PRE-PROD
+# =========================
+- stage: PREPROD
+  displayName: "PRE-PROD"
+
+  dependsOn: QA
+  condition: succeeded()
+
+  jobs:
+  - job: Terraform_PREPROD
+
+    steps:
+
+    - script: |
+        cd environments/preprod
+        terraform init
+      displayName: "Terraform Init - PRE-PROD"
+
+    - script: |
+        cd environments/preprod
+        terraform validate
+      displayName: "Terraform Validate - PRE-PROD"
+
+    - script: |
+        cd environments/preprod
+        terraform plan -out=tfplan
+      displayName: "Terraform Plan - PRE-PROD"
+
+    - script: |
+        cd environments/preprod
+        terraform apply -auto-approve tfplan
+      displayName: "Terraform Apply - PRE-PROD"
+
+
+# =========================
+# PROD
+# =========================
+- stage: PROD
+  displayName: "PROD"
+
+  dependsOn: PREPROD
+  condition: succeeded()
+
+  jobs:
+  - deployment: Terraform_PROD
+    displayName: "Terraform PROD"
+
+    environment: production
+
+    strategy:
+      runOnce:
+        deploy:
+
+          steps:
+
+          - script: |
+              cd environments/prod
+              terraform init
+            displayName: "Terraform Init - PROD"
+
+          - script: |
+              cd environments/prod
+              terraform validate
+            displayName: "Terraform Validate - PROD"
+
+          - script: |
+              cd environments/prod
+              terraform plan -out=tfplan
+            displayName: "Terraform Plan - PROD"
+
+          - script: |
+              cd environments/prod
+              terraform apply -auto-approve tfplan
+            displayName: "Terraform Apply - PROD"
