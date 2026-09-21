@@ -15,7 +15,7 @@ provider "azurerm" {
 
 # Resource Group Child Module
 module "resource_group" {
-  source = "./Module/resource_group"
+  source = "../../Module/resource-group"
 
   resource_group_name = var.resource_group_name
   location            = var.location
@@ -23,7 +23,7 @@ module "resource_group" {
 
 # Network Child Module
 module "network" {
-  source = "../../modules/network"
+  source = "../../Module/network"
 
   resource_group_name = module.resource_group.resource_group_name
   location            = var.location
