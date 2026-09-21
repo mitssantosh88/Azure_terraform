@@ -1,6 +1,6 @@
 resource_group_name = "rg-dev"
 
-location = "useast"
+location = "East US"
 
 vnet_name = "vnet-dev"
 

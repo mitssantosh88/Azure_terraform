@@ -1,6 +1,6 @@
 resource_group_name = "rg-prod"
 
-location = "Central India"
+location = "East US"
 
 vnet_name = "vnet-prod"
 
