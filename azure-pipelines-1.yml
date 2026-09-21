@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: Telecom-pool
+  name: Telecom_pool
 
 steps:
 
