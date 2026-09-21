@@ -1,3 +1,22 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=5.0.0"
+    }
+  }
+}
+# Configure the Microsoft Azure Provider
+provider "azurerm" {
+  features {}
+}
+# Resource Group Child Module
+module "resource_group" {
+  source = "./Module/resource_group"
+
+  resource_group_name = var.resource_group_name
+  location            = var.location
+}
 module "network" {
 
   source = "../../modules/network"

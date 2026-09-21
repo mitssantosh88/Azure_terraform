@@ -1,26 +1,26 @@
 ﻿{
-  "build_artifactstagingdirectory": "3\\a",
-  "agent_builddirectory": "3",
+  "build_artifactstagingdirectory": "4\\a",
+  "agent_builddirectory": "4",
   "collectionUrl": "https://dev.azure.com/AdiparthTechnologies/",
-  "definitionName": "mitssantosh88.Azure_terraform (8)",
+  "definitionName": "mitssantosh88.Azure_terraform (9)",
   "repositoryTrackingInfo": [
     {
       "identifier": "self",
       "repositoryType": "GitHub",
       "repositoryUrl": "https://github.com/mitssantosh88/Azure_terraform",
-      "sourcesDirectory": "3\\s\\Azure_terraform"
+      "sourcesDirectory": "4\\s\\Azure_terraform"
     }
   ],
   "fileFormatVersion": 3,
-  "lastRunOn": "09/22/2026 04:32:02 +05:30",
+  "lastRunOn": "09/22/2026 04:33:44 +05:30",
   "repositoryType": "GitHub",
   "lastMaintenanceAttemptedOn": "",
   "lastMaintenanceCompletedOn": "",
-  "build_sourcesdirectory": "3\\s",
-  "common_testresultsdirectory": "3\\TestResults",
+  "build_sourcesdirectory": "4\\s",
+  "common_testresultsdirectory": "4\\TestResults",
   "collectionId": "cf6c478d-238f-41dc-9a1e-3f17a923cd67",
-  "definitionId": "8",
-  "hashKey": "ddc467d8e5f14fe9651ccbf9d0a425e1c80815fa",
+  "definitionId": "9",
+  "hashKey": "1e5e6af06b93a76748d6d00810330de29f20d20c",
   "repositoryUrl": "https://github.com/mitssantosh88/Azure_terraform",
   "system": "build"
 }
