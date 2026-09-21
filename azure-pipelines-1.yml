@@ -7,21 +7,21 @@ pool:
 steps:
 
 - script: |
-    cd environments/preprod
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
     terraform init
   displayName: "Terraform Init"
 
 - script: |
-    cd environments/preprod
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
     terraform validate
   displayName: "Terraform Validate"
 
 - script: |
-    cd environments/preprod
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
     terraform plan
   displayName: "Terraform Plan"
 
 - script: |
-    cd environments/preprod
+    cd /d "$(Build.SourcesDirectory)\environments\preprod"
     terraform apply -auto-approve
   displayName: "Terraform Apply"
