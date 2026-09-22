@@ -1,6 +1,6 @@
 resource_group_name = "rg-qa"
 
-location = "us-east-1"
+location = "East US"
 
 vnet_name = "vnet-qa"
 
